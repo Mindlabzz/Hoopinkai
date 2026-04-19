@@ -1,246 +1,330 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hoopinkai | Flow Fest Edition 6</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Plus+Jakarta+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Hoopinkai’s Flow Fest Edition 6</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Space+Grotesk:wght@300;500;700&family=Montserrat:wght@900&display=swap" rel="stylesheet">
     <style>
-        :root { --obsidian: #000000; --ember: #FF4D00; --tan: #D5B893; --space: #25344F; --wine: #632024; }
-        body { background-color: var(--obsidian); font-family: 'Plus Jakarta Sans', sans-serif; color: white; overflow-x: hidden; }
-        .heading { font-family: 'Cinzel', serif; letter-spacing: 0.15em; }
+        :root {
+            --obsidian: #000000;
+            --ember: #FF4500;
+            --off-white: #f4f4f4;
+            --accent-glow: rgba(255, 69, 0, 0.4);
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body {
+            background-color: var(--obsidian);
+            color: var(--off-white);
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* LIGHTING & TEXTURE */
+        .grain-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+            opacity: 0.2; pointer-events: none; z-index: 100;
+        }
+
+        /* FIRE SPHERE EFFECT */
+        .fire-sphere {
+            position: absolute;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, var(--ember) 0%, transparent 70%);
+            filter: blur(60px);
+            border-radius: 50%;
+            opacity: 0.3;
+            z-index: 0;
+            animation: pulse 8s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.2; }
+            100% { transform: scale(1.3) translate(20px, -20px); opacity: 0.4; }
+        }
+
+        /* NAVIGATION */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 6%; position: fixed; width: 100%; z-index: 1000;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+            backdrop-filter: blur(5px);
+        }
+
+        /* BIGGER LOGO */
+        .nav-logo { height: 80px; width: auto; transition: 0.3s; }
         
-        /* SPIRAL RINGS BACKGROUND */
-        .spiral-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: radial-gradient(circle at 50% 50%, var(--space) 0%, var(--obsidian) 100%);
+        nav a { 
+            color: #fff; text-decoration: none; margin-left: 40px; 
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
+            font-weight: 700; transition: 0.3s;
         }
-        .ring {
-            position: absolute; border: 1.5px solid rgba(255, 77, 0, 0.15); border-radius: 50%;
-            animation: rotate 30s linear infinite; pointer-events: none;
+        nav a:hover { color: var(--ember); }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh; position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
         }
-        @keyframes rotate { from { transform: rotate(0deg) scale(1); } to { transform: rotate(360deg) scale(1.1); } }
 
-        /* UI ELEMENTS */
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 2rem; }
-        .btn-ember { background: var(--ember); box-shadow: 0 0 30px rgba(255, 77, 0, 0.5); transition: 0.4s; }
-        .btn-ember:hover { transform: scale(1.05); box-shadow: 0 0 60px var(--ember); }
+        /* HERO VIDEO LOGIC */
+        .hero-video-bg {
+            position: absolute; top: 50%; left: 50%; 
+            width: 100vw; height: 100vh; 
+            transform: translate(-50%, -50%);
+            min-width: 177.77vh; 
+            min-height: 56.25vw;
+            z-index: 1; pointer-events: none;
+            filter: brightness(0.4) contrast(1.2);
+        }
 
-        /* VIDEO HOVER PLAY (No Thumbnails) */
-        .video-box { position: relative; border-radius: 2rem; overflow: hidden; border: 1.5px solid var(--ember); background: #000; }
-        .video-box video { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: opacity 0.3s; }
-        .video-box:hover video { opacity: 1; }
+        .hero-content { z-index: 10; text-align: center; width: 100%; }
 
-        .nav-link:hover { color: var(--ember); border-bottom: 2px solid var(--ember); }
+        .hero-title {
+            font-family: 'Montserrat'; font-size: clamp(4rem, 15vw, 12rem);
+            line-height: 0.8; margin: 0; text-transform: uppercase;
+        }
+
+        .hero-title span { display: block; }
+        .hero-title .outline { color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,0.6); }
+        .hero-title .ember-fill { color: var(--ember); text-shadow: 0 0 60px var(--accent-glow); }
+
+        .tagline { 
+            font-family: 'Syncopate'; font-size: 1rem; letter-spacing: 10px; 
+            margin-top: 20px; color: var(--ember); 
+        }
+
+        /* SECTIONS */
+        section { padding: 140px 10%; position: relative; }
+        .section-title {
+            font-family: 'Montserrat'; font-size: clamp(2.5rem, 6vw, 5rem);
+            margin-bottom: 60px; text-transform: uppercase; line-height: 1;
+        }
+
+        /* TESTIMONIAL */
+        .testimonial-block {
+            border-left: 3px solid var(--ember);
+            padding-left: 40px;
+            margin: 80px 0;
+            max-width: 900px;
+            display: flex; align-items: center; gap: 30px;
+        }
+        .review-img { width: 100px; height: 100px; border-radius: 50%; border: 2px solid var(--ember); object-fit: cover; }
+        .testimonial-text { font-size: 1.5rem; font-style: italic; line-height: 1.6; }
+        .testimonial-author { font-family: 'Syncopate'; color: var(--ember); font-size: 0.8rem; letter-spacing: 3px; margin-top: 20px; }
+
+        /* GRIDS */
+        .grid-poster {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+        }
+        @media (max-width: 900px) { .grid-poster { grid-template-columns: 1fr; } }
+
+        .video-container {
+            position: relative; width: 100%; border: 1px solid #222;
+            background: #050505; transition: 0.5s;
+        }
+        .drive-vid { aspect-ratio: 16/9; width: 100%; border: none; }
+
+        .content-card {
+            background: #0a0a0a; padding: 60px;
+            border-left: 5px solid var(--ember);
+            position: relative; z-index: 5;
+        }
+
+        /* PARTNERS & FACILITATORS */
+        .partner-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px; margin-top: 40px;
+        }
+        .partner-card {
+            background: #080808; padding: 20px; text-align: center; border: 1px solid #111;
+        }
+        .dummy-img { width: 100%; aspect-ratio: 1; background: #151515; border: 1px solid #222; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: #333; font-family: 'Syncopate'; font-size: 0.6rem; }
+
+        /* PROGRAM LIST */
+        .day-block {
+            border-top: 1px solid #222; padding: 40px 0;
+            display: flex; justify-content: space-between; transition: 0.3s;
+        }
+        .day-num { font-family: 'Syncopate'; color: var(--ember); font-size: 1.2rem; }
+        .day-title { font-size: 1.8rem; font-weight: 700; text-transform: uppercase; width: 40%; }
+        .day-list { opacity: 0.7; width: 45%; list-style: none; padding: 0; line-height: 1.8; font-size: 0.9rem; }
+
+        /* FAQ */
+        .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .faq-item { background: #080808; padding: 30px; border: 1px solid #111; }
+        .faq-item h4 { color: var(--ember); margin-top: 0; text-transform: uppercase; letter-spacing: 2px; }
+
+        footer { padding: 80px 10%; border-top: 1px solid #111; text-align: center; }
+        .btn-ember { display: inline-block; padding: 20px 50px; background: var(--ember); color: #fff; text-decoration: none; font-family: 'Syncopate'; font-size: 0.8rem; letter-spacing: 3px; margin-top: 30px; transition: 0.4s; }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <!-- BACKGROUND SPIRALS -->
-    <div class="spiral-bg">
-        <div class="ring w-[900px] h-[900px] -top-40 -left-40"></div>
-        <div class="ring w-[600px] h-[600px] bottom-10 -right-20" style="animation-duration: 45s;"></div>
-    </div>
+    <div class="grain-overlay"></div>
 
-    <!-- HEADER MENU -->
-    <nav class="fixed top-0 w-full z-50 glass rounded-none border-t-0 py-4 px-6 md:px-24 flex justify-between items-center">
-        <img src="https://github.com/Mindlabzz/Hoopinkai/blob/59e8d76e1a35c9a0d44bf36a80d4bd897e927ee9/Flow%20Fest%20Logo.png" alt="Logo" class="h-10 md:h-12">
-        <div class="hidden md:flex gap-10 text-[10px] uppercase tracking-widest font-bold">
-            <a href="#about" class="nav-link transition">The Story</a>
-            <a href="#program" class="nav-link transition">Journey</a>
-            <a href="#facilitators" class="nav-link transition">Facilitators</a>
-            <a href="#location" class="nav-link transition">Sanctuary</a>
-            <a href="#register" class="text-ember">Register</a>
-        </div>
-    </nav>
-
-    <!-- 1. HERO FOLD: AUTO-PLAY BACKGROUND VIDEO -->
-    <header class="relative h-screen w-full flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-black/60 z-10"></div>
-            <!-- BACKGROUND HIGHLIGHT VIDEO -->
-            <video autoplay muted loop playsinline class="w-full h-full object-cover">
-                <source src="https://drive.google.com/uc?id=17bQqCkLXZqMwh_D_w5gyuKKdnz3sArvd" type="video/mp4">
-            </video>
-        </div>
-        <div class="relative z-20 text-center px-6">
-            <h1 class="heading text-5xl md:text-[10rem] mb-2 text-white drop-shadow-2xl">Flow Fest <span class="text-[#FF4D00]">6</span></h1>
-            <p class="text-xl md:text-3xl tracking-[0.4em] text-tan mb-12 uppercase font-light">Discover Your Creative Spirit</p>
-            <a href="#register" class="btn-ember px-16 py-6 rounded-full text-white font-black tracking-[0.4em] text-lg uppercase">Register Now</a>
-        </div>
+    <header>
+        <!-- ADDED LOGO -->
+        <a href="#"><img src="https://lh3.googleusercontent.com/d/1vECGx_k9--Z7uboqt3X4vof2uHRdPbEk" class="nav-logo" alt="Hoopinkai Logo"></a>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#program">Program</a>
+            <a href="#location">The Farm</a>
+            <a href="#facilitators">Team</a>
+            <a href="#registration" style="border: 1px solid var(--ember); padding: 10px 20px;">Register</a>
+        </nav>
     </header>
 
-    <!-- 2. THE STORY (ABOUT US) -->
-    <section id="about" class="py-24 px-6 lg:px-24">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-            <div class="space-y-10">
-                <h2 class="heading text-5xl md:text-7xl text-[#FF4D00]">The Story</h2>
-                <p class="text-xl text-tan font-light leading-relaxed">
-                    What does it look like if we let curiosity drive us towards discovering our spirit and capacity? Journey with us through the concept of flow & community. 
+    <section class="hero">
+        <div class="fire-sphere" style="top: 20%; left: 10%;"></div>
+        <!-- FIXED HERO VIDEO LOGIC -->
+        <iframe class="hero-video-bg" src="https://drive.google.com/file/d/17bQqCkLXZqMwh_D_w5gyuKKdnz3sArvd/preview?autoplay=1&mute=1" allow="autoplay; fullscreen"></iframe>
+        <div class="hero-content">
+            <div class="tagline">FLOW FEST EDITION 6</div>
+            <h1 class="hero-title">
+                <span class="outline">DISCOVER</span>
+                <span class="ember-fill">CREATIVE</span>
+                <span class="outline">SPIRIT</span>
+            </h1>
+            <a href="#registration" class="btn-ember">LEARN MORE</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <!-- TESTIMONIAL UPDATE: NILOSAFAR IMAGE + QUOTE -->
+        <div class="testimonial-block">
+            <img src="https://lh3.googleusercontent.com/d/1tDdXpjFM8ZJnDyu23nPfAGY6l_i2OMTK" class="review-img" alt="Nilosafar">
+            <div>
+                <p class="testimonial-text">"Come for the music, art, the community... for the sheer passion + love + kindness + joy you’ll experience here."</p>
+                <p class="testimonial-author">— NILOSAFAR, PR & Marketing</p>
+            </div>
+        </div>
+
+        <div class="grid-poster">
+            <div class="content-card">
+                <h2 class="section-title" style="font-size: 3rem;">CONVERSE WITH<br><span style="color: var(--ember);">POWER</span></h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; opacity: 0.8;">
+                    "Welcome to Hoopinkai’s Flow Fest, a transformative retreat designed to get you to converse deeply with your true creative power."
+                    Join us for a 4 day retreat at our stunning 100-acre farm with a serene lake.
                 </p>
-                <p class="text-white/60 leading-relaxed italic">
-                    We invite you to a curated 4-day retreat at our stunning 100-acre farm with a serene lake. Return to a space that prioritises expression & creation over consumption. Discover your flow and innate form of expression.
+            </div>
+            <!-- MEGHANA VIDEO INTEGRATION -->
+            <div class="video-container">
+                <iframe class="drive-vid" src="https://drive.google.com/file/d/113rooUa6xxGSlshWTK3H0z7MfmAEb8sE/preview?autoplay=1&mute=1" allow="autoplay"></iframe>
+                <p style="padding: 20px; font-size: 0.8rem; letter-spacing: 2px;">THE FLOW STATE ABSORPTION</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="program">
+        <div class="fire-sphere" style="bottom: 0; right: 0;"></div>
+        <h2 class="section-title">THE<br><span class="ember-fill">CHRONICLE</span></h2>
+        
+        <div class="day-block">
+            <span class="day-num">01</span>
+            <div class="day-title">Catalysing Through Community</div>
+            <ul class="day-list">
+                <li>Meet & Greet</li>
+                <li>Initiation Cacao Ceremony & Ecstatic Dance</li>
+                <li>Bonfire and sharing circle</li>
+            </ul>
+        </div>
+
+        <div class="day-block">
+            <span class="day-num">02</span>
+            <div class="day-title">Designing Creative Toolkits</div>
+            <ul class="day-list">
+                <li>Free Flow Morning Movements</li>
+                <li>Somatic Sensations & Body Work</li>
+                <li>Art Expression & Hooping</li>
+                <li>Intuitive Music & Jamming by the lake</li>
+                <li>Prop Explorations & Feeling the Group Flow</li>
+                <li>Showcase by Professional Artists</li>
+            </ul>
+        </div>
+
+        <div class="day-block">
+            <span class="day-num">03</span>
+            <div class="day-title">Uncovering Expression</div>
+            <ul class="day-list">
+                <li>Art & Music Exploration Mornings</li>
+                <li>Structured Explorations to Uncover Flow States</li>
+                <li>Intro to Fire Play</li>
+                <li>Yoga Nidra</li>
+                <li>Participants Open Stage</li>
+                <li>Sensation Anchoring</li>
+            </ul>
+        </div>
+
+        <div class="day-block">
+            <span class="day-num">04</span>
+            <div class="day-title">Integration & Closing</div>
+            <ul class="day-list">
+                <li>Integration Session</li>
+                <li>Intuitive Music Session</li>
+                <li>Closing Ceremony</li>
+                <li>Lunch & Event Wrap</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="location" style="background: #030303;">
+        <div class="grid-poster">
+            <div class="content-card">
+                <h2 class="section-title" style="font-size: 2.5rem;">THE<br><span class="ember-fill">SANCTUARY</span></h2>
+                <p style="opacity: 0.8; line-height: 1.8;">
+                    <strong>The Setting:</strong> A sprawling 100-acre lush farm located 2 hours from Bengaluru. <br><br>
+                    <strong>Features:</strong> Private lake access, sunset viewpoints, organic farm-to-table dining, and dedicated flow spaces under ancient trees.
                 </p>
             </div>
-            <!-- Video One (Hover Play) -->
-            <div class="video-box aspect-video" onmouseenter="this.querySelector('video').play()" onmouseleave="this.querySelector('video').pause();">
-                <video preload="auto" muted loop><source src="https://drive.google.com/file/d/113rooUa6xxGSlshWTK3H0z7MfmAEb8sE/preview" type="video/mp4"></video>
+            <div class="video-container h-80">
+                <iframe class="drive-vid" style="filter: grayscale(1) invert(0.9);" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.6!2d77.5!3d12.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU0JzAwLjAiTiA3N8KwMzAnMDAuMCJF!5e0!3m2!1sen!2sin!4v1"></iframe>
             </div>
         </div>
     </section>
 
-    <!-- 3. THE JOURNEY (DETAILED SCHEDULE) -->
-    <section id="program" class="py-24 px-6 bg-white/5">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="heading text-center text-4xl mb-20 text-[#FF4D00]">The Journey</h2>
-            <div class="grid md:grid-cols-4 gap-6">
-                <!-- Days 1-4 Vertical Lists -->
-                <div class="glass p-10 hover:border-[#FF4D00] transition">
-                    <span class="text-[#FF4D00] font-bold text-xs uppercase mb-4 block">Day 01</span>
-                    <h4 class="heading text-xl mb-6">Catalysing Community</h4>
-                    <ul class="text-sm space-y-4 text-tan/60 font-light">
-                        <li>• Meet & Greet</li>
-                        <li>• Cacao Ceremony</li>
-                        <li>• Ecstatic Dance</li>
-                        <li>• Bonfire Sharing</li>
-                    </ul>
-                </div>
-                <div class="glass p-10 md:mt-10 border-[#FF4D00]/20 bg-[#FF4D00]/5">
-                    <span class="text-[#FF4D00] font-bold text-xs uppercase mb-4 block">Day 02</span>
-                    <h4 class="heading text-xl mb-6">Designing Toolkits</h4>
-                    <ul class="text-sm space-y-4 text-tan/60 font-light">
-                        <li>• Morning Movements</li>
-                        <li>• Somatic Body Work</li>
-                        <li>• Art Expression</li>
-                        <li>• Hooping & Jams</li>
-                        <li>• Artist Showcase</li>
-                    </ul>
-                </div>
-                <div class="glass p-10 hover:border-[#FF4D00] transition">
-                    <span class="text-[#FF4D00] font-bold text-xs uppercase mb-4 block">Day 03</span>
-                    <h4 class="heading text-xl mb-6">Intuitive Expression</h4>
-                    <ul class="text-sm space-y-4 text-tan/60 font-light">
-                        <li>• Flow State Drills</li>
-                        <li>• Intro to Fire Play</li>
-                        <li>• Yoga Nidra</li>
-                        <li>• Open Stage Jam</li>
-                    </ul>
-                </div>
-                <div class="glass p-10 md:mt-10 border-[#FF4D00]/20 bg-[#FF4D00]/5">
-                    <span class="text-[#FF4D00] font-bold text-xs uppercase mb-4 block">Day 04</span>
-                    <h4 class="heading text-xl mb-6">Integration</h4>
-                    <ul class="text-sm space-y-4 text-tan/60 font-light">
-                        <li>• Integration Session</li>
-                        <li>• Closing Ceremony</li>
-                        <li>• Farm Lunch</li>
-                    </ul>
-                </div>
+    <section id="facilitators">
+        <h2 class="section-title">OUR<br><span class="ember-fill">TEAM</span></h2>
+        <div class="partner-grid">
+            <div class="partner-card"><div class="dummy-img">FACILITATOR 1</div><h4>Artist Name</h4></div>
+            <div class="partner-card"><div class="dummy-img">FACILITATOR 2</div><h4>Artist Name</h4></div>
+            <div class="partner-card"><div class="dummy-img">FACILITATOR 3</div><h4>Artist Name</h4></div>
+            <div class="partner-card"><div class="dummy-img">FACILITATOR 4</div><h4>Artist Name</h4></div>
+        </div>
+
+        <h2 class="section-title" style="margin-top: 100px;">BRAND<br><span class="ember-fill">PARTNERS</span></h2>
+        <div class="partner-grid">
+            <div class="partner-card"><div class="dummy-img">LOGO</div></div>
+            <div class="partner-card"><div class="dummy-img">LOGO</div></div>
+            <div class="partner-card"><div class="dummy-img">LOGO</div></div>
+            <div class="partner-card"><div class="dummy-img">LOGO</div></div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <h2 class="section-title">QUESTIONS?</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h4>What is flow state?</h4>
+                <p>A mental state of complete absorption and engagement in an activity.</p>
+            </div>
+            <div class="faq-item">
+                <h4>What should I bring?</h4>
+                <p>Comfortable clothing, journal, yoga mat, swimwear, and your creative tools.</p>
             </div>
         </div>
     </section>
 
-    <!-- 4. PAST MEMORIES (GALLERY) -->
-    <section class="py-24 px-6">
-        <h2 class="heading text-center text-4xl mb-20 text-tan">Past Memories</h2>
-        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="h-64 glass overflow-hidden group"><img src="https://images.unsplash.com/photo-1545127398-14699f92334b?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700"></div>
-            <div class="h-80 glass overflow-hidden -mt-10 group"><img src="https://images.unsplash.com/photo-1517230878791-4d28214057c2?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700"></div>
-            <div class="h-64 glass overflow-hidden group"><img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700"></div>
-            <div class="h-80 glass overflow-hidden -mt-10 group"><img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700"></div>
-        </div>
+    <section id="registration" style="text-align: center;">
+        <div class="fire-sphere" style="left: 50%; transform: translateX(-50%);"></div>
+        <h2 class="hero-title" style="font-size: clamp(3rem, 10vw, 7rem);">JOIN THE<br><span class="ember-fill">CIRCLE</span></h2>
+        <a href="https://wa.me/919970256379" class="btn-ember">REGISTER VIA WHATSAPP</a>
     </section>
 
-    <!-- 5. FACILITATORS & BRAND PARTNERS -->
-    <section id="facilitators" class="py-24 px-6 lg:px-24 bg-white/5">
-        <h2 class="heading text-center text-4xl mb-20 text-[#FF4D00]">Facilitators</h2>
-        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
-            <!-- Facilitators Circles -->
-            <div class="group">
-                <div class="w-48 h-48 rounded-full border-2 border-[#FF4D00] mx-auto mb-6 overflow-hidden"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition"></div>
-                <h4 class="font-bold tracking-widest uppercase">Yami</h4>
-            </div>
-            <div class="group">
-                <div class="w-48 h-48 rounded-full border-2 border-[#FF4D00] mx-auto mb-6 overflow-hidden"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition"></div>
-                <h4 class="font-bold tracking-widest uppercase">Anch</h4>
-            </div>
-            <div class="group">
-                <div class="w-48 h-48 rounded-full border-2 border-[#FF4D00] mx-auto mb-6 overflow-hidden"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition"></div>
-                <h4 class="font-bold tracking-widest uppercase">Supriya</h4>
-            </div>
-            <div class="group">
-                <div class="w-48 h-48 rounded-full border-2 border-[#FF4D00] mx-auto mb-6 overflow-hidden"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition"></div>
-                <h4 class="font-bold tracking-widest uppercase">Myke</h4>
-            </div>
-        </div>
-        <!-- BRAND PARTNERS -->
-        <div class="mt-32 max-w-4xl mx-auto">
-            <h5 class="heading text-center text-xs tracking-[0.5em] mb-12 text-tan/30">Brand Partners</h5>
-            <div class="grid grid-cols-4 gap-12 opacity-30 grayscale items-center text-center font-black text-xs">
-                <span>LOGO 1</span> <span>LOGO 2</span> <span>LOGO 3</span> <span>LOGO 4</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. THE VIBE (REVIEWS) -->
-    <section class="py-24 px-6 lg:px-24">
-        <h2 class="heading text-center text-4xl mb-20 text-[#FF4D00]">The Vibe</h2>
-        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
-            <!-- MEGHANA VIDEO TESTIMONIAL (Hover Play) -->
-            <div class="video-box aspect-video" onmouseenter="this.querySelector('video').play()" onmouseleave="this.querySelector('video').pause();">
-                <video preload="auto" muted loop><source src="https://drive.google.com/file/d/113rooUa6xxGSlshWTK3H0z7MfmAEb8sE/preview" type="video/mp4"></video>
-                <div class="absolute bottom-4 left-4 z-10"><p class="text-[10px] font-bold text-tan uppercase tracking-widest">Meghana | Testimonial</p></div>
-            </div>
-            <!-- NILOSAFAR IMAGE REVIEW -->
-            <div class="glass p-10 flex flex-col md:flex-row items-center gap-10">
-                <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-[#FF4D00] flex-shrink-0">
-                    <img src="https://drive.google.com/uc?id=1tDdXpjFM8ZJnDyu23nPfAGY6l_i2OMTK" alt="Nilosafar Review">
-                </div>
-                <div>
-                    <p class="text-sm italic text-tan/70 leading-relaxed mb-4">"The sheer passion + love + joy you’ll experience here is unmatched. An initiation into flow."</p>
-                    <h5 class="text-[10px] font-bold uppercase text-[#FF4D00] tracking-widest">Nilosafar | PR & Marketing</h5>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. THE SANCTUARY (LOCATION) -->
-    <section id="location" class="py-24 px-6 lg:px-24 bg-white/5">
-        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-            <div class="space-y-10">
-                <h2 class="heading text-6xl text-[#FF4D00]">The Sanctuary</h2>
-                <p class="text-xl text-tan/60 font-light italic">100-Acre farm, serene lake, village-style farm nourishment. 2 hours from Bangalore.</p>
-                <p class="text-white/50 text-sm leading-relaxed">Our farm is easily accessible by car or public transportation like trains and buses. We offer shared cottage rooms and nutritious village-style meals grown on the farm or locally sourced.</p>
-                <div class="glass h-72 overflow-hidden border-[#FF4D00]/20">
-                    <iframe class="w-full h-full grayscale invert opacity-40" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888!2d77.5!3d12.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU0JzAwLjAiTiA3N8KwMzAnMDAuMCJF!5e0!3m2!1sen!2sin!4v1"></iframe>
-                </div>
-            </div>
-            
-            <!-- REGISTRATION FORM -->
-            <div id="register" class="glass p-12 border-[#FF4D00]/30 shadow-2xl">
-                <h2 class="heading text-4xl mb-12 text-center">Join the Circle</h2>
-                <form class="space-y-8">
-                    <input type="text" placeholder="Full Name" class="w-full bg-transparent border-b border-tan/20 py-4 outline-none focus:border-[#FF4D00] transition">
-                    <input type="email" placeholder="Email Address" class="w-full bg-transparent border-b border-tan/20 py-4 outline-none focus:border-[#FF4D00] transition">
-                    <input type="tel" placeholder="Phone Number" class="w-full bg-transparent border-b border-tan/20 py-4 outline-none focus:border-[#FF4D00] transition">
-                    <select class="w-full bg-black border-b border-tan/20 py-4 outline-none focus:border-[#FF4D00] transition text-tan">
-                        <option>Individual Ticket</option>
-                        <option>Group Tribe (3+)</option>
-                    </select>
-                    <textarea placeholder="Dietary Notes / Soul intent" class="w-full bg-transparent border-b border-tan/20 py-4 outline-none focus:border-[#FF4D00] transition h-24"></textarea>
-                    <button class="w-full btn-ember py-6 rounded-2xl text-white font-black uppercase tracking-[0.4em] text-sm">Secure My Spot</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="py-12 text-center border-t border-white/5 opacity-60">
-        <p class="text-[8px] uppercase tracking-[1em] mb-4 text-tan">Hoopinkai Flow Fest Edition 6</p>
-        <div class="flex flex-col md:flex-row justify-center items-center gap-6 text-xs italic text-tan/40">
-            <a href="https://wa.me/919970256379" target="_blank" class="hover:text-[#FF4D00] transition">WhatsApp: 9970256379</a>
-            <a href="tel:+918208798495" class="hover:text-[#FF4D00] transition">Call: 8208798495</a>
-        </div>
+    <footer>
+        <div style="font-family: 'Syncopate'; letter-spacing: 10px; opacity: 0.4;">HOOPINKAI 2026 // BENGALURU</div>
     </footer>
 
 </body>
