@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoopinkai | Flow Fest Edition 6</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Plus+Jakarta+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --obsidian: #000000; --ember: #FF4D00; --tan: #D5B893; --space: #25344F; --wine: #632024; }
+        body { background-color: var(--obsidian); font-family: 'Plus Jakarta Sans', sans-serif; color: white; overflow-x: hidden; }
+        .heading { font-family: 'Cinzel', serif; letter-spacing: 0.15em; }
+        
+        /* SPIRAL RINGS BACKGROUND */
+        .spiral-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: radial-gradient(circle at 50% 50%, var(--space) 0%, var(--obsidian) 100%);
+        }
+        .ring {
+            position: absolute; border: 1.5px solid rgba(255, 77, 0, 0.15); border-radius: 50%;
+            animation: rotate 30s linear infinite; pointer-events: none;
+        }
+        @keyframes rotate { from { transform: rotate(0deg) scale(1); } to { transform: rotate(360deg) scale(1.1); } }
+
+        /* UI ELEMENTS */
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 2rem; }
+        .btn-ember { background: var(--ember); box-shadow: 0 0 30px rgba(255, 77, 0, 0.5); transition: 0.4s; }
+        .btn-ember:hover { transform: scale(1.05); box-shadow: 0 0 60px var(--ember); }
+
+        /* VIDEO HOVER PLAY (No Thumbnails) */
+        .video-box { position: relative; border-radius: 2rem; overflow: hidden; border: 1.5px solid var(--ember); background: #000; }
+        .video-box video { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: opacity 0.3s; }
+        .video-box:hover video { opacity: 1; }
+
+        .nav-link:hover { color: var(--ember); border-bottom: 2px solid var(--ember); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- BACKGROUND SPIRALS -->
+    <div class="spiral-bg">
+        <div class="ring w-[900px] h-[900px] -top-40 -left-40"></div>
+        <div class="ring w-[600px] h-[600px] bottom-10 -right-20" style="animation-duration: 45s;"></div>
+    </div>
+
+    <!-- HEADER MENU -->
+    <nav class="fixed top-0 w-full z-50 glass rounded-none border-t-0 py-4 px-6 md:px-24 flex justify-between items-center">
+        <img src="https://drive.google.com/uc?id=1vECGx_k9--Z7uboqt3X4vof2uHRdPbEk" alt="Logo" class="h-10 md:h-12">
+        <div class="hidden md:flex gap-10 text-[10px] uppercase tracking-widest font-bold">
+            <a href="#about" class="nav-link transition">The Story</a>
+            <a href="#program" class="nav-link transition">Journey</a>
+            <a href="#facilitators" class="nav-link transition">Facilitators</a>
+            <a href="#location" class="nav-link transition">Sanctuary</a>
+            <a href="#register" class="text-ember">Register</a>
+        </div>
+    </nav>
+
+    <!-- 1. HERO FOLD: AUTO-PLAY BACKGROUND VIDEO -->
+    <header class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-black/60 z-10"></div>
+            <!-- BACKGROUND HIGHLIGHT VIDEO -->
+            <video autoplay muted loop playsinline class="w-full h-full object-cover">
+                <source src="https://drive.google.com/uc?id=17bQqCkLXZqMwh_D_w5gyuKKdnz3sArvd" type="video/mp4">
+            </video>
+        </div>
+        <div class="relative z-20 text-center px-6">
+            <h1 class="heading text-5xl md:text-[10rem] mb-2 text-white drop-shadow-2xl">Flow Fest <span class="text-[#FF4D00]">6</span></h1>
+            <p class="text-xl md:text-3xl tracking-[0.4em] text-tan mb-12 uppercase font-light">Discover Your Creative Spirit</p>
+            <a href="#register" class="btn-ember px-16 py-6 rounded-full text-white font-black tracking-[0.4em] text-lg uppercase">Register Now</a>
+        </div>
+    </header>
+
+    <!-- 2. THE STORY (ABOUT US) -->
+    <section id="about" class="py-24 px-6 lg:px-24">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-10">
+                <h2 class="heading text-5xl md:text-7xl text-[#FF4D00]">The Story</h2>
+                <p class="text-xl text-tan font-light leading-relaxed">
+                    What does it look like if we let curiosity drive us towards discovering our spirit and capacity? Journey with us through the concept of flow & community. 
+                </p>
+                <p class="text-white/60 leading-relaxed italic">
+                    We invite you to a curated 4-day retreat at our stunning 100-acre farm with a serene lake. Return to a space that prioritises expression & creation over consumption. Discover your flow and innate form of expression.
+                </p>
+            </div>
+            <!-- Video One (Hover Play) -->
+            <div class="video-box aspect-video" onmouseenter="this.querySelector('video').play()" onmouseleave="this.querySelector('video').pause();">
+                <video preload="auto" muted loop><source src="https://drive.google.com/file/d/113rooUa6xxGSlshWTK3H0z7MfmAEb8sE/preview" type="video/mp4"></video>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. THE JOURNEY (DETAILED SCHEDULE) -->
+    <section id="program" class="py-24 px-6 bg-white/5">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="heading text-center text-4xl mb-20 text-[#FF4D00]">The Journey</h2>
+            <div class="grid md:grid-cols-4 gap-6">
+                <!-- Days 1-4 Vertical Lists -->
+                <div class="glass p-10 hover:border-[#FF4D00] transition">
+                    <span class="text-[#FF4D00] font-bold text-xs uppercase mb-4 block">Day 01</span>
+                    <h4 class="heading text-xl mb-6">Catalysing Community</h4>
+                    <ul class="text-sm space-y-4 text-tan/60 font-light">
+                        <li>• Meet & Greet</li>
+                        <li>• Cacao Ceremony</li>
+                        <li>• Ecstatic Dance</li>
+                        <li>• Bonfire Sharing</li>
+                    </ul>
+                </div>
+                <div class="glass p-10 md:mt-10 border-[#FF4D00]/20 bg-[#FF4D00]/5">
+                    <span class="text-[#FF4D00] font-bold text-xs uppercase mb-4 block">Day 02</span>
+                    <h4 class="heading text-xl mb-6">Designing Toolkits</h4>
+                    <ul class="text-sm space-y-4 text-tan/60 font-light">
+                        <li>• Morning Movements</li>
+                        <li>• Somatic Body Work</li>
+                        <li>• Art Expression</li>
+                        <li>• Hooping & Jams</li>
+                        <li>• Artist Showcase</li>
+                    </ul>
+                </div>
+                <div class="glass p-10 hover:border-[#FF4D00] transition">
+                    <span class="text-[#FF4D00] font-bold text-xs uppercase mb-4 block">Day 03</span>
+                    <h4 class="heading text-xl mb-6">Intuitive Expression</h4>
+                    <ul class="text-sm space-y-4 text-tan/60 font-light">
+                        <li>• Flow State Drills</li>
+                        <li>• Intro to Fire Play</li>
+                        <li>• Yoga Nidra</li>
+                        <li>• Open Stage Jam</li>
+                    </ul>
+                </div>
+                <div class="glass p-10 md:mt-10 border-[#FF4D00]/20 bg-[#FF4D00]/5">
+                    <span class="text-[#FF4D00] font-bold text-xs uppercase mb-4 block">Day 04</span>
+                    <h4 class="heading text-xl mb-6">Integration</h4>
+                    <ul class="text-sm space-y-4 text-tan/60 font-light">
+                        <li>• Integration Session</li>
+                        <li>• Closing Ceremony</li>
+                        <li>• Farm Lunch</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. PAST MEMORIES (GALLERY) -->
+    <section class="py-24 px-6">
+        <h2 class="heading text-center text-4xl mb-20 text-tan">Past Memories</h2>
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="h-64 glass overflow-hidden group"><img src="https://images.unsplash.com/photo-1545127398-14699f92334b?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700"></div>
+            <div class="h-80 glass overflow-hidden -mt-10 group"><img src="https://images.unsplash.com/photo-1517230878791-4d28214057c2?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700"></div>
+            <div class="h-64 glass overflow-hidden group"><img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700"></div>
+            <div class="h-80 glass overflow-hidden -mt-10 group"><img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700"></div>
+        </div>
+    </section>
+
+    <!-- 5. FACILITATORS & BRAND PARTNERS -->
+    <section id="facilitators" class="py-24 px-6 lg:px-24 bg-white/5">
+        <h2 class="heading text-center text-4xl mb-20 text-[#FF4D00]">Facilitators</h2>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+            <!-- Facilitators Circles -->
+            <div class="group">
+                <div class="w-48 h-48 rounded-full border-2 border-[#FF4D00] mx-auto mb-6 overflow-hidden"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition"></div>
+                <h4 class="font-bold tracking-widest uppercase">Yami</h4>
+            </div>
+            <div class="group">
+                <div class="w-48 h-48 rounded-full border-2 border-[#FF4D00] mx-auto mb-6 overflow-hidden"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition"></div>
+                <h4 class="font-bold tracking-widest uppercase">Anch</h4>
+            </div>
+            <div class="group">
+                <div class="w-48 h-48 rounded-full border-2 border-[#FF4D00] mx-auto mb-6 overflow-hidden"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition"></div>
+                <h4 class="font-bold tracking-widest uppercase">Supriya</h4>
+            </div>
+            <div class="group">
+                <div class="w-48 h-48 rounded-full border-2 border-[#FF4D00] mx-auto mb-6 overflow-hidden"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition"></div>
+                <h4 class="font-bold tracking-widest uppercase">Myke</h4>
+            </div>
+        </div>
+        <!-- BRAND PARTNERS -->
+        <div class="mt-32 max-w-4xl mx-auto">
+            <h5 class="heading text-center text-xs tracking-[0.5em] mb-12 text-tan/30">Brand Partners</h5>
+            <div class="grid grid-cols-4 gap-12 opacity-30 grayscale items-center text-center font-black text-xs">
+                <span>LOGO 1</span> <span>LOGO 2</span> <span>LOGO 3</span> <span>LOGO 4</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. THE VIBE (REVIEWS) -->
+    <section class="py-24 px-6 lg:px-24">
+        <h2 class="heading text-center text-4xl mb-20 text-[#FF4D00]">The Vibe</h2>
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
+            <!-- MEGHANA VIDEO TESTIMONIAL (Hover Play) -->
+            <div class="video-box aspect-video" onmouseenter="this.querySelector('video').play()" onmouseleave="this.querySelector('video').pause();">
+                <video preload="auto" muted loop><source src="https://drive.google.com/file/d/113rooUa6xxGSlshWTK3H0z7MfmAEb8sE/preview" type="video/mp4"></video>
+                <div class="absolute bottom-4 left-4 z-10"><p class="text-[10px] font-bold text-tan uppercase tracking-widest">Meghana | Testimonial</p></div>
+            </div>
+            <!-- NILOSAFAR IMAGE REVIEW -->
+            <div class="glass p-10 flex flex-col md:flex-row items-center gap-10">
+                <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-[#FF4D00] flex-shrink-0">
+                    <img src="https://drive.google.com/uc?id=1tDdXpjFM8ZJnDyu23nPfAGY6l_i2OMTK" alt="Nilosafar Review">
+                </div>
+                <div>
+                    <p class="text-sm italic text-tan/70 leading-relaxed mb-4">"The sheer passion + love + joy you’ll experience here is unmatched. An initiation into flow."</p>
+                    <h5 class="text-[10px] font-bold uppercase text-[#FF4D00] tracking-widest">Nilosafar | PR & Marketing</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. THE SANCTUARY (LOCATION) -->
+    <section id="location" class="py-24 px-6 lg:px-24 bg-white/5">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-10">
+                <h2 class="heading text-6xl text-[#FF4D00]">The Sanctuary</h2>
+                <p class="text-xl text-tan/60 font-light italic">100-Acre farm, serene lake, village-style farm nourishment. 2 hours from Bangalore.</p>
+                <p class="text-white/50 text-sm leading-relaxed">Our farm is easily accessible by car or public transportation like trains and buses. We offer shared cottage rooms and nutritious village-style meals grown on the farm or locally sourced.</p>
+                <div class="glass h-72 overflow-hidden border-[#FF4D00]/20">
+                    <iframe class="w-full h-full grayscale invert opacity-40" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888!2d77.5!3d12.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU0JzAwLjAiTiA3N8KwMzAnMDAuMCJF!5e0!3m2!1sen!2sin!4v1"></iframe>
+                </div>
+            </div>
+            
+            <!-- REGISTRATION FORM -->
+            <div id="register" class="glass p-12 border-[#FF4D00]/30 shadow-2xl">
+                <h2 class="heading text-4xl mb-12 text-center">Join the Circle</h2>
+                <form class="space-y-8">
+                    <input type="text" placeholder="Full Name" class="w-full bg-transparent border-b border-tan/20 py-4 outline-none focus:border-[#FF4D00] transition">
+                    <input type="email" placeholder="Email Address" class="w-full bg-transparent border-b border-tan/20 py-4 outline-none focus:border-[#FF4D00] transition">
+                    <input type="tel" placeholder="Phone Number" class="w-full bg-transparent border-b border-tan/20 py-4 outline-none focus:border-[#FF4D00] transition">
+                    <select class="w-full bg-black border-b border-tan/20 py-4 outline-none focus:border-[#FF4D00] transition text-tan">
+                        <option>Individual Ticket</option>
+                        <option>Group Tribe (3+)</option>
+                    </select>
+                    <textarea placeholder="Dietary Notes / Soul intent" class="w-full bg-transparent border-b border-tan/20 py-4 outline-none focus:border-[#FF4D00] transition h-24"></textarea>
+                    <button class="w-full btn-ember py-6 rounded-2xl text-white font-black uppercase tracking-[0.4em] text-sm">Secure My Spot</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 text-center border-t border-white/5 opacity-60">
+        <p class="text-[8px] uppercase tracking-[1em] mb-4 text-tan">Hoopinkai Flow Fest Edition 6</p>
+        <div class="flex flex-col md:flex-row justify-center items-center gap-6 text-xs italic text-tan/40">
+            <a href="https://wa.me/919970256379" target="_blank" class="hover:text-[#FF4D00] transition">WhatsApp: 9970256379</a>
+            <a href="tel:+918208798495" class="hover:text-[#FF4D00] transition">Call: 8208798495</a>
+        </div>
+    </footer>
+
+</body>
+</html>
