@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoopinkai | Flow Fest Edition 6</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Plus+Jakarta+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --obsidian: #000000; --ember: #FF4D00; --tan: #D5B893; }
+        body { background-color: var(--obsidian); font-family: 'Plus Jakarta Sans', sans-serif; color: white; overflow-x: hidden; }
+        .heading { font-family: 'Cinzel', serif; letter-spacing: 0.15em; }
+        
+        /* LIGHT SPIRAL/FIRE RINGS BACKGROUND */
+        .fire-ring {
+            position: absolute; border: 1.5px solid var(--ember); border-radius: 50%;
+            box-shadow: 0 0 30px var(--ember), inset 0 0 15px var(--ember);
+            opacity: 0.15; pointer-events: none;
+            animation: drift 25s infinite linear;
+        }
+        @keyframes drift { from { transform: rotate(0deg) scale(1); } to { transform: rotate(360deg) scale(1.1); } }
+
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 2rem; }
+        .btn-ember { background: var(--ember); box-shadow: 0 0 30px rgba(255, 77, 0, 0.5); transition: 0.3s ease; }
+        .btn-ember:hover { transform: scale(1.05); box-shadow: 0 0 50px var(--ember); }
+        
+        /* Video Container & Hover Play Logic */
+        .video-card { position: relative; border-radius: 2rem; overflow: hidden; border: 1px solid var(--ember); background: #111; cursor: pointer; }
+        .video-card video { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s; }
+        .video-card:hover video { opacity: 1; }
+        .video-card .thumbnail { position: absolute; inset: 0; z-index: 5; transition: opacity 0.5s; }
+        .video-card:hover .thumbnail { opacity: 0; }
+
+        /* Responsive spacing */
+        .section-gap { padding-top: 4rem; padding-bottom: 4rem; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- BACKGROUND LIGHT SPIRALS -->
+    <div class="fixed inset-0 z-[-1] pointer-events-none">
+        <div class="fire-ring w-[900px] h-[500px] -top-20 -left-40"></div>
+        <div class="fire-ring w-[600px] h-[600px] bottom-10 -right-20"></div>
+    </div>
+
+    <!-- 1. HERO FOLD: AUTO-PLAY BACKGROUND VIDEO -->
+    <header class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-black/60 z-10"></div>
+            <!-- Background Highlight Video -->
+            <video autoplay muted loop playsinline class="w-full h-full object-cover">
+                <source src="https://drive.google.com/file/d/17mntqLrpwynyxlf-yifI63OAkJHMVQkk/preview" type="video/mp4">
+            </video>
+        </div>
+        <div class="relative z-20 text-center px-6">
+            <!-- NEW FLOW FEST LOGO -->
+            <img src="https://drive.google.com/uc?id=1vECGx_k9--Z7uboqt3X4vof2uHRdPbEk" alt="Flow Fest Logo" class="w-48 md:w-64 mx-auto mb-8 drop-shadow-2xl">
+            <h1 class="heading text-5xl md:text-[8rem] mb-2 text-white">Flow Fest <span class="text-[#FF4D00]">6</span></h1>
+            <p class="text-lg md:text-xl tracking-[0.4em] text-tan/70 mb-10 uppercase font-light">~ Discover Your Creative Spirit ~</p>
+            <a href="#register" class="btn-ember px-14 py-5 rounded-full text-white font-bold tracking-widest text-sm uppercase">Register Now</a>
+        </div>
+    </header>
+
+    <!-- 2. THE STORY & ABOUT VIDEO -->
+    <section class="section-gap px-6 lg:px-24">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <h2 class="heading text-4xl md:text-5xl text-[#FF4D00]">The Story</h2>
+                <p class="text-lg text-tan font-light leading-relaxed">
+                    What does it look like if we let curiosity drive us towards discovering our spirit and capacity? Journey with us through the concept of flow & community. 
+                </p>
+                <div class="p-6 glass border-l-4 border-[#FF4D00]"><p class="italic text-white">"Prioritising expression & creation over consumption."</p></div>
+            </div>
+            <!-- HOVER TO PLAY VIDEO -->
+            <div class="video-card aspect-video shadow-2xl" onmouseover="this.querySelector('video').play()" onmouseout="this.querySelector('video').pause(); this.querySelector('video').currentTime = 0;">
+                <img src="https://images.unsplash.com/photo-1545127398-14699f92334b?auto=format&fit=crop&q=80" class="thumbnail object-cover" alt="Video 1 Thumbnail">
+                <video muted loop playsinline><source src="https://drive.google.com/file/d/113rooUa6xxGSlshWTK3H0z7MfmAEb8sE/preview" type="video/mp4"></video>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. FACILITATORS (REPLACED TRIBE) -->
+    <section class="section-gap px-6 lg:px-24 bg-white/5">
+        <h2 class="heading text-center text-4xl mb-16 text-[#FF4D00]">Facilitators</h2>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+            <!-- Facilitator Loop -->
+            <div class="text-center group">
+                <div class="w-48 h-48 rounded-full mx-auto mb-6 border-2 border-[#FF4D00] overflow-hidden grayscale hover:grayscale-0 transition">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80" class="w-full h-full object-cover">
+                </div>
+                <h4 class="font-bold tracking-widest uppercase">Yami</h4>
+                <p class="text-[10px] text-tan/40 uppercase mt-1">Movement Facilitator</p>
+            </div>
+            <div class="text-center group">
+                <div class="w-48 h-48 rounded-full mx-auto mb-6 border-2 border-[#FF4D00] overflow-hidden grayscale hover:grayscale-0 transition">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80" class="w-full h-full object-cover">
+                </div>
+                <h4 class="font-bold tracking-widest uppercase">Anch</h4>
+                <p class="text-[10px] text-tan/40 uppercase mt-1">Flow Specialist</p>
+            </div>
+            <div class="text-center group">
+                <div class="w-48 h-48 rounded-full mx-auto mb-6 border-2 border-[#FF4D00] overflow-hidden grayscale hover:grayscale-0 transition">
+                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80" class="w-full h-full object-cover">
+                </div>
+                <h4 class="font-bold tracking-widest uppercase">Supriya</h4>
+                <p class="text-[10px] text-tan/40 uppercase mt-1">Creative Expression</p>
+            </div>
+            <div class="text-center group">
+                <div class="w-48 h-48 rounded-full mx-auto mb-6 border-2 border-[#FF4D00] overflow-hidden grayscale hover:grayscale-0 transition">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80" class="w-full h-full object-cover">
+                </div>
+                <h4 class="font-bold tracking-widest uppercase">Myke</h4>
+                <p class="text-[10px] text-tan/40 uppercase mt-1">Flow Tech Lead</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. THE JOURNEY (SCHEDULE) - VERTICAL LISTS -->
+    <section class="section-gap px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="heading text-center text-3xl mb-12 text-[#FF4D00]">The Journey</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Day 01-04 Cards -->
+                <div class="glass p-8 flex flex-col justify-between hover:border-[#FF4D00] transition">
+                    <div>
+                        <span class="text-[#FF4D00] font-bold text-[10px] uppercase mb-4 block">Day 01</span>
+                        <h4 class="heading text-lg mb-4">Community Catalyst</h4>
+                        <ul class="text-xs space-y-3 text-tan/60 font-light">
+                            <li>• Meet & Greet</li>
+                            <li>• Initiation Cacao Ceremony</li>
+                            <li>• Ecstatic Dance</li>
+                            <li>• Bonfire Sharing Circle</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="glass p-8 bg-[#FF4D00]/5 border-[#FF4D00]/20 lg:mt-8">
+                    <div>
+                        <span class="text-[#FF4D00] font-bold text-[10px] uppercase mb-4 block">Day 02</span>
+                        <h4 class="heading text-lg mb-4">Designing Toolkits</h4>
+                        <ul class="text-xs space-y-3 text-tan/60 font-light">
+                            <li>• Somatic Body Work</li>
+                            <li>• Hooping & Music</li>
+                            <li>• Lakeside Jams</li>
+                            <li>• Professional Showcase</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="glass p-8">
+                    <div>
+                        <span class="text-[#FF4D00] font-bold text-[10px] uppercase mb-4 block">Day 03</span>
+                        <h4 class="heading text-lg mb-4">Intuitive Flow</h4>
+                        <ul class="text-xs space-y-3 text-tan/60 font-light">
+                            <li>• Intro to Fire Play</li>
+                            <li>• Yoga Nidra</li>
+                            <li>• Open Stage Jam</li>
+                            <li>• Sensation Anchoring</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="glass p-8 bg-[#FF4D00]/5 border-[#FF4D00]/20 lg:mt-8">
+                    <div>
+                        <span class="text-[#FF4D00] font-bold text-[10px] uppercase mb-4 block">Day 04</span>
+                        <h4 class="heading text-lg mb-4">Integration</h4>
+                        <ul class="text-xs space-y-3 text-tan/60 font-light">
+                            <li>• Integration Session</li>
+                            <li>• Closing Ceremony</li>
+                            <li>• Farm Farewell Lunch</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. TESTIMONIALS (MEGHANA VIDEO + NILO IMAGE) -->
+    <section class="section-gap px-6 lg:px-24 bg-white/5">
+        <h2 class="heading text-center text-3xl mb-12 text-[#FF4D00]">The Vibe</h2>
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
+            <!-- MEGHANA VIDEO (Hover Play) -->
+            <div class="video-card aspect-video" onmouseover="this.querySelector('video').play()" onmouseout="this.querySelector('video').pause()">
+                <img src="https://images.unsplash.com/photo-1517230878791-4d28214057c2?auto=format&fit=crop&q=80" class="thumbnail object-cover" alt="Meghana Thumbnail">
+                <video muted loop playsinline><source src="https://drive.google.com/file/d/113rooUa6xxGSlshWTK3H0z7MfmAEb8sE/preview" type="video/mp4"></video>
+                <div class="absolute bottom-4 left-4 z-10"><p class="text-[10px] font-bold text-tan uppercase tracking-widest">Meghana | Testimonial</p></div>
+            </div>
+            <!-- NILOSAFAR IMAGE REVIEW -->
+            <div class="glass p-8 flex items-center gap-6">
+                <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-[#FF4D00] flex-shrink-0">
+                    <!-- NEW NILOSAFAR IMAGE LINK -->
+                    <img src="https://drive.google.com/uc?id=1tDdXpjFM8ZJnDyu23nPfAGY6l_i2OMTK" alt="Nilosafar Review Image">
+                </div>
+                <div class="space-y-3">
+                    <p class="text-sm italic text-tan/70 leading-relaxed">"Come for the music, art, and community... for the scrumptious meals, & for the passion you’ll experience here."</p>
+                    <h5 class="text-[10px] font-bold uppercase text-[#FF4D00] tracking-widest">Nilosafar | PR & Marketing</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. THE SANCTUARY (LOCATION) -->
+    <section id="location" class="section-gap px-6 lg:px-24">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-6">
+                <h2 class="heading text-5xl text-[#FF4D00]">The Sanctuary</h2>
+                <p class="text-tan/60 font-light italic">100-Acre farm, lake views, village farm meals. 2h from Bangalore.</p>
+                <div class="glass h-72 overflow-hidden border-[#FF4D00]/20">
+                    <iframe class="w-full h-full grayscale invert opacity-40" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888!2d77.5!3d12.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU0JzAwLjAiTiA3N8KwMzAnMDAuMCJF!5e0!3m2!1sen!2sin!4v1"></iframe>
+                </div>
+            </div>
+            <!-- FULL REGISTRATION FORM -->
+            <div id="register" class="glass p-12 border-[#FF4D00]/30 shadow-2xl">
+                <h2 class="heading text-3xl mb-8 text-center">Register</h2>
+                <form class="space-y-6">
+                    <input type="text" placeholder="Full Name" class="w-full bg-transparent border-b border-tan/20 py-4 outline-none focus:border-[#FF4D00] transition">
+                    <input type="email" placeholder="Email Address" class="w-full bg-transparent border-b border-tan/20 py-4 outline-none focus:border-[#FF4D00] transition">
+                    <select class="w-full bg-black border-b border-tan/20 py-4 outline-none focus:border-[#FF4D00] transition text-tan">
+                        <option>Individual Soul</option>
+                        <option>Group Tribe (3+)</option>
+                    </select>
+                    <button class="w-full btn-ember py-4 rounded-2xl text-white font-black uppercase tracking-[0.4em] text-sm">Secure My Spot</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. BRAND PARTNERS -->
+    <section class="section-gap border-t border-white/5 opacity-40">
+        <div class="max-w-4xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+            <span class="font-black text-xs">PARTNER 1</span> <span class="font-black text-xs">PARTNER 2</span>
+            <span class="font-black text-xs">PARTNER 3</span> <span class="font-black text-xs">PARTNER 4</span>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center border-t border-white/5 opacity-60">
+        <p class="text-[8px] uppercase tracking-[1em] mb-4 text-tan">Hoopinkai Flow Fest Edition 6</p>
+        <div class="flex flex-col md:flex-row justify-center items-center gap-6 text-xs italic text-tan/40">
+            <!-- CLICKABLE WHATSAPP & PHONE -->
+            <a href="https://wa.me/919970256379" target="_blank" class="hover:text-[#FF4D00] transition">WhatsApp: 9970256379</a>
+            <a href="tel:+918208798495" class="hover:text-[#FF4D00] transition">Call: 8208798495</a>
+        </div>
+    </footer>
+
+</body>
+</html>
