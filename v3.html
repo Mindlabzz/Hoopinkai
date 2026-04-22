@@ -8,230 +8,249 @@
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Space+Grotesk:wght@300;500;700&family=Montserrat:wght@900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --obsidian: #000000; --ember: #FF4D00; --tan: #D5B893;
-            --wine: #632024; --coffee: #6F4D38; --glow: rgba(255, 77, 0, 0.4);
+            /* Brand Colors from your provided palette */
+            --space-cadet: #25344F;
+            --slate-gray: #617891;
+            --tan: #D5B893;
+            --coffee: #6F4D38;
+            --caput: #632024;
+            --amber: #FFBF00; /* Energetic accent */
         }
-        body { background-color: var(--obsidian); color: white; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
+        
+        body { background-color: var(--space-cadet); color: var(--tan); font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
         .sync { font-family: 'Syncopate', sans-serif; letter-spacing: 5px; text-transform: uppercase; }
         .mont { font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
 
-        /* THE WINDING PATH (Solo Safari Style Logic) */
+        /* THE WINDING PATH (Solo Safari Logic) */
         .flow-path {
-            position: absolute; top: 0; left: 50%; width: 2px; height: 100%;
-            background-image: linear-gradient(to bottom, var(--ember) 30%, transparent 30%);
-            background-size: 2px 25px; background-repeat: repeat-y;
-            z-index: 0; opacity: 0.3; transform: translateX(-50%);
+            position: absolute; top: 0; left: 50%; width: 3px; height: 100%;
+            background-image: linear-gradient(to bottom, var(--amber) 40%, transparent 40%);
+            background-size: 3px 35px; background-repeat: repeat-y;
+            z-index: 0; opacity: 0.25; transform: translateX(-50%);
         }
 
-        /* LIGHT SPIRALS (Pinterest Inspiration) */
+        /* LIGHT SPIRALS (Pinterest Ref) */
         .fire-sphere {
-            position: absolute; border-radius: 50%; border: 1.5px solid var(--ember);
-            box-shadow: 0 0 30px var(--ember), inset 0 0 15px var(--ember);
-            opacity: 0.15; animation: rotate 30s linear infinite; pointer-events: none;
+            position: absolute; border-radius: 50%; border: 2px solid var(--amber);
+            box-shadow: 0 0 40px var(--amber), inset 0 0 20px var(--amber);
+            opacity: 0.2; animation: rotate 40s linear infinite; pointer-events: none;
         }
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        /* NAVIGATION */
+        /* HEADER */
         header {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 6%; position: fixed; width: 100%; z-index: 1000;
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
+            padding: 15px 6%; position: fixed; width: 100%; z-index: 1000;
+            background: rgba(37, 52, 79, 0.9); backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(213, 184, 147, 0.1);
         }
-        .nav-logo { height: 75px; width: auto; }
-        nav a { color: #fff; text-decoration: none; margin-left: 30px; font-size: 0.7rem; font-weight: 700; transition: 0.3s; }
-        nav a:hover { color: var(--ember); }
+        .nav-logo { height: 90px; width: auto; }
+        nav a { color: var(--tan); text-decoration: none; margin-left: 30px; font-size: 0.7rem; font-weight: 700; transition: 0.3s; }
+        nav a:hover { color: var(--amber); }
 
-        /* HERO VIDEO */
-        .hero { height: 100vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        /* HERO FOLD */
+        .hero { height: 100vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--space-cadet); }
         .hero-video-bg {
             position: absolute; top: 50%; left: 50%; width: 100vw; height: 100vh;
             transform: translate(-50%, -50%); min-width: 177.77vh; min-height: 56.25vw;
-            z-index: 1; pointer-events: none; filter: brightness(0.4);
+            z-index: 1; pointer-events: none; filter: brightness(0.5);
         }
 
-        /* SECTION HEADINGS (Safari Style Rounded Accent) */
-        .section-tag { background: var(--wine); color: var(--tan); padding: 5px 20px; border-radius: 50px; font-size: 0.6rem; margin-bottom: 20px; display: inline-block; }
+        /* SECTION TAGS (Safari Style) */
+        .section-tag { background: var(--caput); color: var(--amber); padding: 6px 22px; border-radius: 50px; font-size: 0.65rem; margin-bottom: 25px; display: inline-block; box-shadow: 0 0 15px rgba(255, 191, 0, 0.2); }
         
-        .card-glass { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 2.5rem; transition: 0.4s; }
-        .card-glass:hover { border-color: var(--ember); box-shadow: 0 0 30px var(--glow); }
+        .card-earth { background: var(--caput); border: 1px solid rgba(213, 184, 147, 0.1); border-radius: 2.5rem; transition: 0.4s; }
+        .card-earth:hover { border-color: var(--amber); transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
 
-        .btn-ember { background: var(--ember); padding: 18px 45px; color: white; font-weight: 900; transition: 0.4s; box-shadow: 0 0 30px var(--glow); }
-        .btn-ember:hover { transform: scale(1.05); background: white; color: black; }
+        .btn-amber { background: var(--amber); padding: 20px 50px; color: var(--caput); font-weight: 900; transition: 0.4s; box-shadow: 0 0 25px rgba(255, 191, 0, 0.4); border-radius: 50px; cursor: pointer; }
+        .btn-amber:hover { background: white; transform: scale(1.05); }
+
+        /* FORM STYLING */
+        .earth-form input, .earth-form select, .earth-form textarea {
+            background: rgba(0,0,0,0.2); border: 1px solid var(--slate-gray); padding: 18px; color: var(--tan); border-radius: 12px; outline: none;
+        }
+        .earth-form input:focus { border-color: var(--amber); }
     </style>
 </head>
-<body>
+<body class="antialiased">
 
     <header>
-        <!-- BIG LOGO -->
+        <!-- LARGE LOGO -->
         <a href="#"><img src="https://lh3.googleusercontent.com/d/1vECGx_k9--Z7uboqt3X4vof2uHRdPbEk" class="nav-logo" alt="Logo"></a>
         <nav class="sync">
             <a href="#about">Story</a>
             <a href="#program">Journey</a>
-            <a href="#sanctuary">Sanctuary</a>
-            <a href="#team">Team</a>
-            <a href="#register" style="border: 1px solid var(--ember); padding: 10px 20px; border-radius: 50px;">Register</a>
+            <a href="#team">Facilitators</a>
+            <a href="#location">Sanctuary</a>
+            <a href="#register" class="bg-amber px-6 py-2 rounded-full !text-caput">Register</a>
         </nav>
     </header>
 
-    <!-- 1. HERO SECTION (Drive Video Background) -->
+    <!-- 1. HERO SECTION (Video Playback Fix) -->
     <section class="hero">
         <iframe class="hero-video-bg" src="https://drive.google.com/file/d/17bQqCkLXZqMwh_D_w5gyuKKdnz3sArvd/preview?autoplay=1&mute=1" allow="autoplay"></iframe>
         <div class="relative z-10 text-center px-6">
-            <div class="sync text-ember text-sm mb-4">Hoopinkai Presents</div>
-            <h1 class="mont text-5xl md:text-[10rem] leading-none mb-6">Flow <span style="color: transparent; -webkit-text-stroke: 1.5px white;">Fest</span></h1>
-            <p class="sync text-lg md:text-xl tracking-[0.5em] text-tan mb-10">Discover Your Creative Spirit</p>
-            <a href="#register" class="btn-ember sync text-[0.7rem]">Join Circle</a>
+            <div class="sync text-amber text-sm mb-4">Edition 06</div>
+            <h1 class="mont text-5xl md:text-[11rem] leading-none mb-6 text-tan">FLOW <span style="color: transparent; -webkit-text-stroke: 1px var(--amber);">FEST</span></h1>
+            <p class="sync text-lg md:text-xl tracking-[0.5em] text-slate-gray mb-10">Discover Your Creative Spirit</p>
+            <a href="#register" class="btn-amber sync text-[0.7rem]">Secure My Spot</a>
         </div>
     </section>
 
     <div class="relative">
-        <!-- WINDING PATH LINE -->
+        <!-- WINDING SAFARI PATH -->
         <div class="flow-path"></div>
 
-        <!-- 2. THE STORY (About Us with Video) -->
-        <section id="about" class="relative py-24 px-[10%]">
-            <div class="fire-sphere w-[600px] h-[600px] -top-20 -left-20"></div>
-            <div class="grid lg:grid-cols-2 gap-16 items-center relative z-10">
-                <div class="card-glass p-12 border-l-4 border-ember">
-                    <span class="section-tag sync">About the fest</span>
-                    <h2 class="mont text-4xl md:text-6xl mb-6">The Story</h2>
-                    <p class="text-lg text-tan/70 leading-relaxed mb-6">
-                        "What does it look like if we let curiosity drive us towards discovering our spirit and capacity? Journey with us through the concept of flow & community."
+        <!-- 2. THE STORY (Earthy Coffee Background) -->
+        <section id="about" class="relative py-32 px-[10%] bg-[#6F4D38]">
+            <div class="fire-sphere w-[800px] h-[800px] -top-40 -left-40"></div>
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center relative z-10">
+                <div class="space-y-6">
+                    <span class="section-tag sync">The Vision</span>
+                    <h2 class="mont text-4xl md:text-7xl mb-8">The Story</h2>
+                    <p class="text-xl text-tan leading-relaxed font-light">
+                        What does it look like if we let curiosity drive us towards discovering our spirit? Journey with us through the concept of community.
                     </p>
-                    <p class="text-white/50 italic italic font-light">Join us for a 4 day retreat at our stunning 100-acre farm with a serene lake. A curated experience of getting in touch with your powers of creation.</p>
+                    <p class="text-white/60 italic border-l-4 border-amber pl-8 font-light">"Welcome to Hoopinkai’s Flow Fest, a transformative retreat designed to converse deeply with your true creative power."</p>
                 </div>
-                <div class="card-glass p-3">
+                <!-- STORY VIDEO -->
+                <div class="card-earth p-4 bg-space-cadet">
                     <iframe class="w-full aspect-video rounded-[2rem]" src="https://drive.google.com/file/d/113rooUa6xxGSlshWTK3H0z7MfmAEb8sE/preview" allow="autoplay"></iframe>
                 </div>
             </div>
         </section>
 
-        <!-- 3. THE JOURNEY (Detailed Schedule) -->
-        <section id="program" class="relative py-24 px-[10%] bg-white/[0.02]">
-            <h2 class="mont text-center text-4xl md:text-7xl mb-16">The Chronicle</h2>
+        <!-- 3. THE JOURNEY (Detailed Schedule on Space Cadet) -->
+        <section id="program" class="relative py-32 px-[10%]">
+            <h2 class="mont text-center text-4xl md:text-8xl mb-24">The Chronicle</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
-                <!-- Days in Vertical Format -->
-                <div class="card-glass p-10">
-                    <span class="sync text-ember text-xl block mb-6">01</span>
-                    <h4 class="sync text-xs font-bold mb-6">Catalysing Through Community</h4>
-                    <ul class="text-sm space-y-4 text-tan/40 font-light">
+                <!-- Day 01 -->
+                <div class="card-earth p-10 h-auto">
+                    <span class="sync text-amber text-2xl block mb-6">01</span>
+                    <h4 class="sync text-[10px] text-slate-gray mb-4">Catalysing Through Community</h4>
+                    <ul class="text-sm space-y-4 text-tan/50 font-light">
                         <li>• Meet & Greet</li>
-                        <li>• Cacao Ceremony</li>
+                        <li>• Initiation Cacao Ceremony</li>
                         <li>• Ecstatic Dance</li>
                         <li>• Bonfire Sharing</li>
                     </ul>
                 </div>
-                <div class="card-glass p-10 md:mt-12 bg-wine/10">
-                    <span class="sync text-ember text-xl block mb-6">02</span>
-                    <h4 class="sync text-xs font-bold mb-6">Designing Toolkits</h4>
-                    <ul class="text-sm space-y-4 text-tan/40 font-light">
+                <!-- Day 02 -->
+                <div class="card-earth p-10 h-auto md:mt-12">
+                    <span class="sync text-amber text-2xl block mb-6">02</span>
+                    <h4 class="sync text-[10px] text-slate-gray mb-4">Creative Toolkits</h4>
+                    <ul class="text-sm space-y-4 text-tan/50 font-light">
+                        <li>• Morning Movements</li>
                         <li>• Somatic Body Work</li>
                         <li>• Art & Hooping</li>
                         <li>• Lakeside Jams</li>
                         <li>• Artist Showcase</li>
                     </ul>
                 </div>
-                <div class="card-glass p-10">
-                    <span class="sync text-ember text-xl block mb-6">03</span>
-                    <h4 class="sync text-xs font-bold mb-6">Intuitive Expression</h4>
-                    <ul class="text-sm space-y-4 text-tan/40 font-light">
+                <!-- Day 03 -->
+                <div class="card-earth p-10 h-auto">
+                    <span class="sync text-amber text-2xl block mb-6">03</span>
+                    <h4 class="sync text-[10px] text-slate-gray mb-4">Intuitive Expression</h4>
+                    <ul class="text-sm space-y-4 text-tan/50 font-light">
                         <li>• Flow State Drills</li>
-                        <li>• Fire Play Intro</li>
+                        <li>• Intro to Fire Play</li>
                         <li>• Yoga Nidra</li>
-                        <li>• Open Stage Jam</li>
+                        <li>• Participants Open Stage</li>
                     </ul>
                 </div>
-                <div class="card-glass p-10 md:mt-12 bg-wine/10">
-                    <span class="sync text-ember text-xl block mb-6">04</span>
-                    <h4 class="sync text-xs font-bold mb-6">Integration</h4>
-                    <ul class="text-sm space-y-4 text-tan/40 font-light">
+                <!-- Day 04 -->
+                <div class="card-earth p-10 h-auto md:mt-12">
+                    <span class="sync text-amber text-2xl block mb-6">04</span>
+                    <h4 class="sync text-[10px] text-slate-gray mb-4">Integration</h4>
+                    <ul class="text-sm space-y-4 text-tan/50 font-light">
                         <li>• Integration Session</li>
                         <li>• Intuitive Music</li>
                         <li>• Closing Ceremony</li>
-                        <li>• Farm Lunch</li>
+                        <li>• Event Wrap</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- 4. PAST MEMORIES (Gallery) -->
-        <section class="py-24 px-[10%]">
-            <h2 class="mont text-center text-4xl mb-12">Past Memories</h2>
+        <!-- 4. PAST MEMORIES (Caput Background Gallery) -->
+        <section class="py-32 px-[10%] bg-[#632024]">
+            <h2 class="mont text-center text-5xl mb-16">Past Memories</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <img src="https://images.unsplash.com/photo-1545127398-14699f92334b?auto=format&fit=crop&q=80" class="w-full h-64 object-cover rounded-[2rem] grayscale hover:grayscale-0 transition duration-500">
-                <img src="https://images.unsplash.com/photo-1517230878791-4d28214057c2?auto=format&fit=crop&q=80" class="w-full h-80 object-cover rounded-[2rem] -mt-10 grayscale hover:grayscale-0 transition duration-500">
-                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80" class="w-full h-64 object-cover rounded-[2rem] grayscale hover:grayscale-0 transition duration-500">
-                <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80" class="w-full h-80 object-cover rounded-[2rem] -mt-10 grayscale hover:grayscale-0 transition duration-500">
+                <img src="https://images.unsplash.com/photo-1545127398-14699f92334b?auto=format&fit=crop&q=80" class="w-full h-64 object-cover rounded-[3rem] border border-amber/20 grayscale hover:grayscale-0 transition duration-700">
+                <img src="https://images.unsplash.com/photo-1517230878791-4d28214057c2?auto=format&fit=crop&q=80" class="w-full h-80 object-cover rounded-[3rem] -mt-10 border border-amber/20 grayscale hover:grayscale-0 transition duration-700">
+                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80" class="w-full h-64 object-cover rounded-[3rem] border border-amber/20 grayscale hover:grayscale-0 transition duration-700">
+                <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80" class="w-full h-80 object-cover rounded-[3rem] -mt-10 border border-amber/20 grayscale hover:grayscale-0 transition duration-700">
             </div>
         </section>
 
-        <!-- 5. TESTIMONIALS (Vibe Check) -->
-        <section id="vibe" class="py-24 px-[10%]">
-            <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
-                <!-- Meghana Video -->
-                <div class="card-glass p-3 relative group">
-                    <iframe class="w-full aspect-video rounded-[2rem]" src="https://drive.google.com/file/d/113rooUa6xxGSlshWTK3H0z7MfmAEb8sE/preview"></iframe>
-                    <p class="sync text-[0.6rem] p-4 text-center">Meghana | Testimonial</p>
-                </div>
-                <!-- Nilo Image + Review -->
-                <div class="card-glass p-10 flex items-center gap-6">
-                    <img src="https://lh3.googleusercontent.com/d/1tDdXpjFM8ZJnDyu23nPfAGY6l_i2OMTK" class="w-24 h-24 rounded-full border-2 border-ember object-cover">
+        <!-- 5. TESTIMONIALS (Nilosafar & Meghana) -->
+        <section class="py-32 px-[10%]">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Nilo -->
+                <div class="card-earth p-10 flex items-center gap-8">
+                    <img src="https://lh3.googleusercontent.com/d/1tDdXpjFM8ZJnDyu23nPfAGY6l_i2OMTK" class="w-28 h-28 rounded-full border-2 border-amber object-cover" alt="Nilosafar">
                     <div>
-                        <p class="italic text-tan/80 text-sm">"The sheer passion + love + kindness + joy you’ll experience here is unmatched. initiation into flow arts."</p>
-                        <h5 class="sync text-[0.6rem] text-ember mt-4">Nilosafar | Marketing</h5>
+                        <p class="italic text-tan font-light">"Come for the music, art, community... for the sheer passion + love + joy you’ll experience here."</p>
+                        <h5 class="sync text-[0.6rem] text-amber mt-4">Nilosafar | Marketing</h5>
                     </div>
+                </div>
+                <!-- Meghana -->
+                <div class="card-earth p-4">
+                    <iframe class="w-full aspect-video rounded-[2rem]" src="https://drive.google.com/file/d/113rooUa6xxGSlshWTK3H0z7MfmAEb8sE/preview"></iframe>
+                    <p class="sync text-center text-[0.6rem] mt-4">Meghana | Testimonial</p>
                 </div>
             </div>
         </section>
 
         <!-- 6. THE SANCTUARY (Location & Map) -->
-        <section id="sanctuary" class="py-24 px-[10%] bg-white/[0.02]">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div>
+        <section id="location" class="py-32 px-[10%] bg-[#6F4D38]">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="space-y-6">
                     <span class="section-tag sync">The Setting</span>
-                    <h2 class="mont text-5xl md:text-7xl mb-8">100-Acre Farm</h2>
-                    <p class="text-tan/60 leading-relaxed text-lg">Nestled in a serene landscape with a picturesque lake. Shared cottage rooms & nutritious village farm meals. Accessible by personal transport or trains (2h from Bangalore).</p>
+                    <h2 class="mont text-5xl md:text-7xl">100-Acre Farm</h2>
+                    <p class="text-tan leading-relaxed text-lg">Nestled in a serene landscape with a picturesque lake 2 hours from Bangalore. Shared cottage rooms & farm-to-table village meals. Accessible by personal transport or trains.</p>
                 </div>
-                <div class="card-glass h-80 overflow-hidden">
-                    <iframe class="w-full h-full grayscale invert opacity-30" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.6!2d77.5!3d12.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU0JzAwLjAiTiA3N8KwMzAnMDAuMCJF!5e0!3m2!1sen!2sin!4v1"></iframe>
+                <div class="card-earth h-96 overflow-hidden border-2 border-amber/30 shadow-2xl">
+                    <iframe class="w-full h-full grayscale opacity-60" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.6!2d77.5!3d12.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU0JzAwLjAiTiA3N8KwMzAnMDAuMCJF!5e0!3m2!1sen!2sin!4v1"></iframe>
                 </div>
             </div>
         </section>
 
-        <!-- 7. THE TEAM (Facilitators) -->
-        <section id="team" class="py-24 px-[10%] text-center">
-            <h2 class="mont text-4xl md:text-6xl mb-16">Facilitators</h2>
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="group"><div class="w-40 h-40 rounded-full bg-tan/10 border border-ember mx-auto mb-6 overflow-hidden"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80" class="w-full h-full object-cover"></div><h4 class="sync text-[0.6rem]">YAMI (F)</h4></div>
-                <div class="group"><div class="w-40 h-40 rounded-full bg-tan/10 border border-ember mx-auto mb-6 overflow-hidden"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80" class="w-full h-full object-cover"></div><h4 class="sync text-[0.6rem]">ANCH (F)</h4></div>
-                <div class="group"><div class="w-40 h-40 rounded-full bg-tan/10 border border-ember mx-auto mb-6 overflow-hidden"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80" class="w-full h-full object-cover"></div><h4 class="sync text-[0.6rem]">SUPRIYA (F)</h4></div>
-                <div class="group"><div class="w-40 h-40 rounded-full bg-tan/10 border border-ember mx-auto mb-6 overflow-hidden"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80" class="w-full h-full object-cover"></div><h4 class="sync text-[0.6rem]">MYKE (M)</h4></div>
+        <!-- 7. FACILITATORS (Team) -->
+        <section id="team" class="py-32 px-[10%] text-center">
+            <h2 class="mont text-5xl md:text-8xl mb-24">The Tribe</h2>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-12">
+                <div class="group"><div class="w-44 h-44 rounded-full border-2 border-amber mx-auto mb-6 overflow-hidden"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80" class="w-full h-full object-cover"></div><h4 class="sync text-[0.7rem]">Yami (F)</h4></div>
+                <div class="group"><div class="w-44 h-44 rounded-full border-2 border-amber mx-auto mb-6 overflow-hidden"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80" class="w-full h-full object-cover"></div><h4 class="sync text-[0.7rem]">Anch (F)</h4></div>
+                <div class="group"><div class="w-44 h-44 rounded-full border-2 border-amber mx-auto mb-6 overflow-hidden"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80" class="w-full h-full object-cover"></div><h4 class="sync text-[0.7rem]">Supriya (F)</h4></div>
+                <div class="group"><div class="w-44 h-44 rounded-full border-2 border-amber mx-auto mb-6 overflow-hidden"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80" class="w-full h-full object-cover"></div><h4 class="sync text-[0.7rem]">Myke (M)</h4></div>
             </div>
-            
-            <div class="mt-24 grid grid-cols-4 gap-8 opacity-20 grayscale text-[0.5rem] font-bold">
+            <!-- Brand Partners -->
+            <div class="mt-32 grid grid-cols-4 gap-8 opacity-10 grayscale text-[0.6rem] font-bold">
                 <span>LOGO 1</span> <span>LOGO 2</span> <span>LOGO 3</span> <span>LOGO 4</span>
             </div>
         </section>
 
-        <!-- 8. REGISTRATION (Safari Style Form) -->
-        <section id="register" class="py-24 px-[10%] text-center">
-            <h2 class="mont text-5xl md:text-8xl mb-12">Join The Circle</h2>
-            <form class="card-glass p-12 max-w-4xl mx-auto grid md:grid-cols-2 gap-8 text-left">
-                <input type="text" placeholder="Full Name" class="bg-transparent border-b border-tan/30 p-4 outline-none focus:border-ember">
-                <input type="email" placeholder="Email Address" class="bg-transparent border-b border-tan/30 p-4 outline-none focus:border-ember">
-                <input type="tel" placeholder="Phone Number" class="bg-transparent border-b border-tan/30 p-4 outline-none focus:border-ember">
-                <select class="bg-black border-b border-tan/30 p-4 text-tan/40"><option>SoloSoul Entry</option><option>Group Tribe</option></select>
-                <textarea placeholder="Notes / Soul intent" class="md:col-span-2 bg-transparent border-b border-tan/30 p-4 h-24 outline-none focus:border-ember"></textarea>
-                <button class="md:col-span-2 btn-ember sync text-[0.7rem] rounded-full">Reserve My Spot</button>
+        <!-- 8. REGISTRATION (Caput Blood-Red Background) -->
+        <section id="register" class="py-32 px-[10%] bg-[#632024]">
+            <div class="fire-sphere w-[600px] h-[600px] left-1/2 -translate-x-1/2 -top-40"></div>
+            <h2 class="mont text-5xl md:text-[9rem] text-center mb-16 text-tan">JOIN <span style="color: transparent; -webkit-text-stroke: 1px var(--amber);">THE</span> CIRCLE</h2>
+            <form class="card-earth p-16 max-w-5xl mx-auto grid md:grid-cols-2 gap-8 text-left bg-space-cadet/50 earth-form relative z-10">
+                <input type="text" placeholder="Full Name">
+                <input type="email" placeholder="Email Address">
+                <input type="tel" placeholder="Phone Number">
+                <select><option>Solo Tribe Entry</option><option>The Pack (3+)</option></select>
+                <textarea placeholder="Dietary notes or soul intent" class="md:col-span-2 h-32"></textarea>
+                <button class="md:col-span-2 btn-amber sync text-[0.8rem]">Secure My Spot</button>
             </form>
         </section>
 
         <!-- FOOTER & CONTACT -->
-        <footer class="py-20 border-t border-white/5 text-center px-[10%]">
-            <h2 class="sync text-[0.6rem] mb-8 text-tan/30">Hoopinkai Flow Fest Edition 6</h2>
-            <div class="flex flex-col md:flex-row justify-center gap-10 text-[0.7rem] font-bold">
-                <a href="https://wa.me/919970256379" target="_blank" class="text-ember">WHATSAPP: 9970256379</a>
-                <a href="tel:+918208798495">CALL: 8208798495</a>
+        <footer class="py-20 border-t border-tan/10 text-center px-[10%]">
+            <h2 class="sync text-[0.6rem] mb-12 opacity-30 tracking-[10px]">Hoopinkai Flow Fest // 2026</h2>
+            <div class="flex flex-col md:flex-row justify-center gap-12 text-[0.8rem] font-bold">
+                <a href="https://wa.me/919970256379" target="_blank" class="text-amber underline underline-offset-8">WHATSAPP: 9970256379</a>
+                <a href="tel:+918208798495" class="text-tan hover:text-white transition">CALL: 8208798495</a>
             </div>
         </footer>
     </div>
